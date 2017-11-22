@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+
+
+<form method="POST" action="">
+	<input type="text" name="id" id="id_usuario">
+	
+	<div class="nombre"></div>
+	
+	<input type="button" id="enviar">
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+	$("#enviar").on('click',  function(event) {
+	event.preventDefault();
+		$.ajax({
+			url: 'ajax.php',
+			data: {id_usuario: $("#id_usuario").val()},
+		})
+		.done(function(datos) {
+			$(".nombre").html(datos);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	
+	});
+</script>
+
+</body>
+</html>
